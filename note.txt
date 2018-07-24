@@ -1,0 +1,397 @@
+Java 101
+
+- Friendly syntax, object-oriented features, memory management, and best of all-the promise of portability.
+
+- How DO you get your brain to treat Java like it was a hungry tiger?
+	The fastest way is to do anything that increases brain activity, especially different types of brain activity (Pictures, conversational style, 80/20 approach ...).
+
+- Here's what YOU can do to bend your brain into submission
+	1. Slow down. The more you understand, the less you have to memorize. Stop and think, Imagine that someone really is asking the question.
+	2. Do the exercises. Write your own notes. Use a pencil.
+	3. Read the "There is No Dumb Questions". Sometimes the question are more useful than the answer.
+	4. Don't do all your reading in one place. Stand-up, stretch, move around, change chairs, change rooms.
+	5. Make this the last thing you read before bed. Or at least the last challenging thing. Your brain needs time on its own, to do more processing. If you put in something new during that processing-time, some of what you just learned will be lost.
+	6. Drink water. Lots of it. Your brain works best in a nice bath of fluid. Dehydration (which can happen before you ever feel thirsty) decreases cognitive function.
+	7. Talk about it. Out loud. Better still, try to explain it out loud to someone else.
+	8. Listen to your brain. If you find yourself starting to skim the surface or forget what you just read, it's time for a break.
+	9. Feel something! Get involved with the stories.
+	10. Type and run the code.
+
+- Strongly recommend: do not use anything but a basic text editor until complete the book (especially not until after chapter 16).
+
+
+Chapter 1: Dive in a quick dip
+The Way Java Works:
+	Source, Compiler, Output (code), Virtual Machine
+What You'll Do In Java:
+	You'll type a source code file, compile it using the javac compiler, then run the compiled bytecode on a Java virtual machine.
+
+Code structure in Java:
+	Put a class in a source file
+	Put methods in a class
+	Put statements in a method
+
+Anatomy of a class:
+	When the JVM starts running, it looks for the class you give it at the command line. Then, the JVM runs everything between the curly braces {} of your main method.
+	Every Java application has to have at least one class, and at least one main method (not one main per class, just one main per application).
+
+Writing a class with a main:
+	In Java, everything goes in a class. You'll type your source code file (with a .java extension), then compile it into a new class file (with a .class extension). When you run your program, you're really running a class.
+
+	example:
+		1. Save MyFirstApp.java
+		2. Compile: javac MyFirstApp.java
+		3. Run: %java MyFirstApp
+
+What can you say in the main method?
+	1. do something: statements: declarations, assignments, method calls, etc.
+	2. do something again and again: Loops: for and while.
+	3. do something under this condition: Branching: If/else tests.
+
+	Syntax Fun:
+		- Each statement must end in a semicolon.
+		- A single-line comment begins with two forward slashes.
+		- Most white space doesn't matter.
+		- Variables are declared with a name and a type.
+		- Classes and methods must be defined within a pair of curly braces.
+
+Looping and looping and ...
+	Java has three standard looping constructs: while, do-while, and for.
+
+Simple boolean tests
+	<, >, ==.
+
+Why does everything have to be in a class?
+	Java is an object-oriented (OO) language. A class is a blueprint for an object, and that nearly everything in Java is an object.
+
+In my other language, I can do a Boolean test on an Integer. In Java, can I say something like:
+	int x = 1;
+	while (x) { }
+
+		No. A Boolean and an Integer are not compatible types in Java. The result of a conditional test must be a boolean.
+
+Conditional branching:
+	In Java, an if test is basically the same as the boolean test in a while loop - except instead of saying, "while there's still beer...", you'll say, "if there's still beer...".
+	We can add an else to the condition, so that we can say something like, "If there's still beer, keep coding, else (otherwise) get more beer, and then continue on...".
+
+	spot the difference: System.out.println inserts a newline while System.out.print keeps printing to the same line.
+
+
+Chapter 2: Classes and objects
+A Trip to Objectville
+We'll look at what makes object-oriented (OO) development in Java so much fun. We'll look at the difference between a class and an object. We'll look at how objects can give you a better life (at least the programming part of your life). Warning: once you get to Objectville, you might never go back. Send us a postcard.
+
+
+Superclass, subclass:
+	The subclasses inherit the methods of the superclass.
+	The subclasses override the methods of the superclass. Then at runtime, the JVM knows exactly which method to run.
+
+When you design a class, think about the objects that will be created from that class type. Think about:
+	- things the object knows
+	- things the object does
+
+	Things an object knows about itself are called instance variables. They represent an object's state (the data), and can have unique values for each object of that type.
+	Things an object can do are called methods.
+
+What's the difference between a class and an object?
+	A class is not an object. (but it's used to construct them)
+		A class is a blueprint for an object. It tells the virtual machine how to make an object of that particular type. Each object made from that class can have its own values for the instance variables of that class.
+	An object is like one entry in your address book.
+
+The dot operator (.) gives you access to an object's state and behavior.
+
+Quick! Get out of main!
+	The two uses of main:
+		- to test your real class
+		- to launch/start your Java application
+	A real Java application is nothing but objects talking to other objects.
+
+Java takes out the Garbage
+	Each time an object is created in Java, it goes into an area of memory known as The Heap. All objects - no matter when, where, or how they're created - live on the heap. But it's not just any old memory heap; the Java heap is actually called the Garbage-Collectible Heap. When you create an object, Java allocates memory space on the heap according to how much that particular object needs. An object with, say, 15 instance variables, will probably need more space than an object with only two instance variables. But what happens when you need to reclaim that space? How do you get an object out of the heap when you're done with it? Java manages that memory for you! When the JVM can 'see' that an object can never be used again, that object becomes eligible for garbage collection. And if you're running low on memory, the Garbage Collector will run, throw out the unreachable objects, and free up the space, so that the space can be reused.
+
+
+What if I need global variables and methods? How do i do that if everything has to go in a class?
+	There isn't a concept of 'global' variables and methods in a Java OO program. In practical use, however, there are times when you want a method (or a constant) to be available to any code running in any part of your program. You'll learn that marking a method as public and static makes it behave much like a 'global'. Any code, in any class of your application, can access a public static method. And if you mark a variable as public, static, and final - you have essentially made a globally-available constant.
+
+Then how is this object-oriented if you can still make global functions and global data?
+	First of all, everything in Java goes in a class. So the constant for pi and the method for random(), although both public and static, are defined within the Math class. And you must keep in mind that these static (global-like) things are the exception rather than the rule in Java. They represent a very special case, where you don't have multiple instances/objects.
+
+What is a Java program? What do you actually deliver?
+	A Java program is a pile of classes (or at least one class). In a Java application, one of the classes must have a main method, used to start-up the program. So as a programmer, you write one or more classes. And those classes are what you deliver. If the end-user doesn't have a JVM, then you'll also need to include that with your application's classes, so that they can run your program. There are a number of installer programs that let you bundle your classes with a variety of JVM's (say, for different platforms), and put it all on a CD-ROM. Then the end-user can install the correct version of the JVM (assuming they don't already have it on their machine).
+
+What if I have a hundred classes? Or a thousand? Isn't that a big pain to deliver all those individual files? Can I bundle them into one Application Thing?
+	Yes, it would be a big pain to deliver a huge bunch of individual files to your end-users, but you won't have to. You can put all of your application files into a Java Archive - a .jar file - that's based on the pkzip format. In the jar file, you can include a simple text file formatted as something called a manifest, that defines which class in that jar holds the main() method that should run.
+
+Bullet points:
+	- Object-oriented programming lets you extend a program without having to touch previously-tested, working code.
+	- All Java code is defined in a class.
+	- A class describes how to make an object of that class type. A class is like a blueprint.
+	- An object can take care of itself; you don't have to know or care how the object does it.
+	- An object knows things and does things.
+	- Things an object knows about itself are called instance variables. They represent the state of an object.
+	- Things an object does are called methods. They represent the behavior of an object.
+	- When you create a class, you may also want to create a separate test class which you'll use to create objects of your new class type.
+	- A class can inherit instance variables and methods from a more abstract superclass.
+	- At runtime, a Java program is nothing more than objects 'talking' to other objects.
+
+Chapter 3: Primitives and References
+Know your variables
+
+So far you're used variables in two places - as object state, and as local variables (variables declared within a method). Later, we'll use variables as arguments, and as return types.
+
+Declaring a variable
+	Rabbit hopper = new Giraffe();
+	Don't expect that to compile.
+
+	Variables come in two flavors: primitive and object reference. Primitives hold fundamental values including integers, booleans, and floating point numbers. Object references hold, well, references to objects.
+
+Primitive Types:
+	Type		Bit Depth			Value Range
+	boolean		(JVM-specific)		true or false
+	char		16 bits				0 to 65535
+	Integer:
+	byte 		8 bits				-128 to 127
+	short		16 bits	(2 bytes)	-32768 to 32767
+	int 		32 bits	(4 bytes)	-2147483648 to 2147483647
+	long 		64 bits	(8 bytes)	-huge to huge
+	Floating point:
+	float 		32 bits				varies
+	double 		64 bits				varies
+
+	ex:
+	byte b = 98;
+	float f = 32.5f;
+	// Gotta have 'f' with a float, because Java thinks anything with a floating point is a double, unless you use 'f'.
+
+Names:
+	It must start with a letter, underscore (_), or dollar sign ($). You can't start a name with a number.
+	After the first character, you can use numbers as well. Just don't start it with a number.
+	It can be anything you like, subject to those two rules, just so long as it isn't one of Java's reserved words.
+
+Objects:
+	There is actually no such thing as an object variable.
+	There's only an object reference variable.
+	An object reference variable holds bits that represent a way to access an object.
+	It doesn't hold the object itself, but it holds something like a pointer. Or an address. Except, in Java we don't really know what is inside a reference variable. We do know that whatever it is, it represents one and only one object. And the JVM knows how to use the reference to get to the object.
+
+A primitive variable is full of bits representing the actual value of the variable, an object reference variable is full of bits representing a way to get to the object.
+
+With primitive variables, the value of the variable is... the value.
+With reference variables, the value of the variable is... bits representing a way to get to a specific object.
+
+How big is a reference variable?
+	You don't know. Unless you're cozy with someone on the JVM's development team, you don't know how a reference is represented. There are pointers in there somewhere, but you can't access them. You won't need to.
+
+Can I do arithmetic on a reference variable, increment it, you know - C stuff?
+	Nope. Say it with me again, "Java is not C.".
+
+Delare object reference variable.
+Assign the value of reference variable to another reference variable (same type of object).
+Object can has no more references. It's unreachable.
+Assign null value null to variable. This variable doesn't refer to anything. But it's still a reference variable, and another object (same type) can still be assigned to it.
+
+
+Array:
+	int[] nums;
+	nums = new int[7];
+
+	Arrays are objects too
+	The Java standard library includes lots of sophisticated data structures including maps, tree, and sets, but arrays are great when you just want a quick, ordered, efficient list of things. Arrays give you fast random access by letting you use an index position to get to any element in the array.
+
+	Every element in an array is just a variable: primitive variable types or reference variable.
+
+	Arrays are always objects, whether they're declared to hold primitives or object references. But you can have an array object that's declared to hold primitive values.
+
+Make an array of Dogs (object references):
+	1. Declare a Dog array variable:
+		Dog[] pets;
+	2. Create a new Dog array with a length of 7 and assign it to the previously-declared Dog[] variable pets:
+		pets = new Dog[7];
+	3. Create new Dog objects, and assign them to the array elements.
+	Remember, elements in a Dog array are just Dog reference variables. We still need Dogs!
+		pets[0] = new Dog();
+		pets[1] = new Dog();
+		...
+
+Chapter 4: Methods use Instance Variables
+How objects Behave
+
+A class is the blueprint for an object. When you write a class, you're describing how the JVM should make an object of that type.
+Every instance of a particular class has the same methods, but the methods can behave differently based on the value of the instance variables.
+
+You can send things to a method:
+	You can pass values into your methods.
+	A method uses parameters. A caller passes arguments.
+	Arguments are the things you pass into the methods. And a parameter is nothing more than a local variable. A variable with a type and a name, that can be used inside the body of the method.
+	If a method takes a parameter, you must pass it something. And that something must be a value of the appropriate type.
+
+You can get things back from a method:
+	Methods can return values. If you declare a method to return a value, you must return a value of the declared type! (Or a value that is compatible with the declared type.).
+
+You can send more than one thing to a method
+
+Java is pass-by-value. That means pass-by-copy.
+
+What happens if the argument you want to pass is an object instead of a paramitive?
+	Java passes everything by value. But... value means bits inside the variable. And remember, you don't stuff objects into variable; the variable is a remote control - a reference to an object. So if you pass a reference to an object into a method, you're passing a copy of the remote control. Stay tuned, though, we'll have lots more to say about this.
+
+Can a method declare multiple return values? Or is there some way to return more than one value?
+	Sort of. A method can declare only one return value. But... if you want to return, say, three int values, then the declared return type can be an int array. Stuff those ints into the array, and pass it on back. It's a little more involved to return multiple values with different types; we'll be talking about that later.
+
+Do I have to return the exact type I declared?
+	You can return anything that can be implicitly promoted to that type. So, you can pass a byte where an int is expected. The caller won't care, because the byte fits just fine into the int the caller will use for assigning the result. You must use an explicit cast when the declared type is smaller than what you're trying to return.
+
+Do I have to do something with the return value of a method? Can I just ignore it?
+	Java doesn't require you to acknowledge a return value. You might want to call a method with a non-void return type, even though you don't care about the return value. In this case, you're calling the method for the work it does inside the method, rather than for what the method gives returns. In Java, you don't have to assign or use the return value.
+
+Bullet points:
+	Classes define what an object knows and what an object does.
+	Things an object knows are its instance variables (state).
+	Things an object does are its methods (behavior).
+	Methods can use instance variables so that objects of the same type can behave differently.
+	A method can have parameters, which means you can pass one or more values in to the method.
+	The number and type of values you pass in must match the order and type of the parameters declared by the method.
+	Values passed in and out of methods can be implicitly promoted to a larger type or explicitly cast to smaller type.
+	The value you pass as an argument to a method can be a literal value or a variable of the declared parameter type.
+	A method must declare a return type. A void return type means the method doesn't return anything.
+	If a method declares a non-void return type, it must return a value compatible with the declared return type.
+
+Encapsulation
+	You may have already experienced that vaguely unsettling feeling that comes with leaving your instance variables exposed.
+	Exposed means reachable with the dot operator.
+	Think about this idea of using our remote control to make a direct change to the Cat object's size instance variable. In the hands of the wrong person, a reference variable (remote control) is quite a dangerous weapon. Because what's to prevent:
+		theCat.height = 0;
+	This would be a Bad Thing. We need to build setter methods for all the instance variables, and find a way to force other code to call the setters rather than access the data directly.
+
+	Hide the data:
+		OK, so how exactly do you hide the data? With the public and private access modifiers.
+		Here's an encapsulation starter rule of thumb: mark your instance variables private and provide public getters and setters for access control. When you have more design and coding savvy in Java, you will probably do things a little differently, but for now, this approach will keep you safe.
+		Ex:
+			class GoodDog {
+				private int size; // Make the instance variable private
+
+				public int getSize() { // Make the getter methods public
+					return size;
+				}
+
+				public void setSize(int s) { // Make the setter methods public
+					size = s;
+				}
+			}
+
+		Even though the methods don't really add new functionality, the cool thing is that you can change your mind later. You can come back and make a method safer, faster, better.
+
+
+Declaring and initializing instance variables:
+	When you don't initialize an instance variable, what happens when you call a getter method? In other words, what is the value of an instance variable before you initialize it?
+	You don't have to initialize instance variables, because they always have a default value. Number primitives (including char) get 0, booleans get false, and object reference variables get null.
+
+The difference between instance and local variables:
+	1. Instance variables are declared inside a class but not within a method.
+	2. Local variables are declared within a method.
+	3. Local variables must be initialized before use!
+
+What about method parameters? How do the rules about local variables apply to them?
+	Method parameters are virtually the same as local variables - they're declared inside the method (well, technically they're declared in the argument list of the method rather than within the body of the method, but they're still local variables as opposed to instance variables). But method parameters will never be uninitialized, so you'll never get a compiler error telling you that a parameter variable might not have been initialized.
+	But that's because the compiler will give you an error if you try to invoke a method without sending arguments that the method needs. So parameters are ALWAYS initialized, because the compiler guarantees that methods are always called with arguments that match the parameters declared for the method, and the arguments are assigned (automatically) to the parameters.
+
+Object equality:
+	Use == to compare two primitives, or to see if two references refer to the same object.
+	Use the equals() method to see if two different objects are equal. (Such as two different String objects that both represent the characters in "Fred").
+	if(a == b)  {...} looks ar the bits in a and b and returns true if the bit pattern is the same (although it doesn't care about the size of the variable, so all the extra zeroes on the left end don't matter).
+
+Chapter 5: Writing a program
+Extra-Strength Methods
+
+Chapter 6: Get to know the Java API
+Using the Java Library
+
+The Java Standard Edition ships with hundreds of pre-built classes.
+ArrayList:
+	add(Object elem)
+	remove(int Index)
+	remove(Object elem)
+	contains(Object elem)
+	isEmpty()
+	indexOf(Object elem)
+	size()
+	get(int Index) (returns the object currently at the index parameter)
+
+So ArrayList is cool, but how would I know it exists?
+	The question is really, "How do I know what's in the API?" and that's the key to your success as a Java programmer. Not to mention your key to being as lazy as possible while still managing to build software. You might be amazed at how much time you can save when somebody else has already done most of the heave lifting, and all you have to do is step in and create the fun part.
+	But we digress... the short answer is that you spend some time learning what's in the core API. The long answer is at the end of this chapter, where you'll learn how to do that.
+
+But that's a pretty big issue. Not only do I need to know that the Java library comes with ArrayList, but more importantly I have to know that ArrayList is the thing that can do what I want! So how do I go from a need-to-do-something to a-way-to-do-it using the API?
+	Now you're really at the heart of it. By the time you've finished this book, you'll have a good grasp of the language, and the rest of your learning curve really is about knowing how to get from a problem to a solution, with you writing the least a mount of code. If you can be patient for a few more pages, we start talking about it at the end of this chapter.
+
+Comparing ArrayList to a regular array:
+	A plain old array has to know its size at the time it's created.
+	To put an object in a regular array, you must assign it to a specific location. (needs an index)
+	ArrayList remove object reference from itself, change size dynamically; Array assign it to null.
+	You can put a primitive in an ArrayList, as long as it's wrapped in a wrapper class. And as of Java 5.0, that wrapping happens automatically.
+
+Non Short Circuit Operators (&, |)
+	When used in boolean expressions, the & and | operators act like their && and || counterparts, except that they force the JVM to always check both sides of the expression. Typically, & and | are used in another context, for manipulating bits.
+
+API packages:
+Using the Library (the Java API)
+	In the Java API, classes are grouped into packages. To use a class in the API, you have to know which package the class is in.
+	Every class in the Java library belongs to a package. The package has a name. You'll learn a lot more about packages later, including how to put your own classes into your own packages.
+
+	You have to know the full name of the class you want to use in your code:
+		ArrayList is not the full name of ArrayList. The full name of ArrayList is actually:
+			java.util.ArrayList
+	You have to tell Java which ArrayList you want to use. You have two options:
+		1. Import:
+			Put an import statement at the top of your source code file:
+				import java.util.ArrayList;
+		2. Type:
+			Type the full name everywhere in your code. Each time you use it. Anywhere you use it.
+
+
+Bullet Points:
+	ArrayList is a class in the Java API.
+	To put something into an ArrayList, use add().
+	To remove something from an ArrayList use remove().
+	To find out where something is (and if it is) in an ArrayList, use indexOf().
+	To get the size in an ArrayList, use the size() method.
+	To get the length in a regular old array, remember, you use the length variable.
+	An ArrayList resizes dynamically to whatever size is needed. It grows when objects are added, and it shrinks when objects are removed.
+	You declared the type of the array using a type parameter, which is a type name in angle brackets.
+	Although an ArrayList holds objects and not primitives, the compiler will automatically "wrap" (and "unwrap" when you take it out) a primitive into an Object, and place that object in the ArrayList instead of the primitive.
+	Classes are grouped into packages.
+	A class has a full name, which is a combination of the package name and the class name.
+	To use a class in a package other than java.lang, you must tell Java the full name of the class.
+	You use either an import statement at the top of your source code, or you can type the full name every place you use the class in your code.
+
+Does import make class bigger? Does it actually compile the imported class or package into my code?
+	Perhaps you're a C programmer? An import is not the same as an #include. So the answer is no and no. Repeat after me: "an import statement saves you from typing." That's really it. You don't have to worry about your code becoming bloated, or slower, from too many imports. An import is simply the way you give Java the full name of a class.
+
+OK, how come I never had to import the String class? Or System?
+	Remember, you get the java.lang package sort of "pre-imported" for free. Because the classes in java.lang are so fundamental, you don't have to use the full name. There is only one java.lang.String class, and Java darn well knows where to find them.
+
+Do I have to put my own classes into packages? How do I do that? Can I do that?
+	In the real world (which you should try to avoid), yes, you will want to put your classes into packages.
+
+How to play with the API
+	2 things you want to know:
+		1. What classes are in the library?
+		2. Once you find a class, how do you know what it can do?
+
+	1. Browse a Book
+		Java in a nutshell
+	2. Use the HTML API docs
+
+
+Chapter 7: Inheritance and Polymorphism
+Better Living in Objectville
+
+Understanding Inheritance:
+	When you design with inheritance, you put common code in a class and then tell other more specific classes that the common (more abstract) class is their superclass. When one class inherits from another, the subclass inherits from the superclass.
+	In Java, we say that the subclass extends the superclass. An inheritance relationship means that the subclass inherits the members of the superclass. An inheritance relationship means that the subclass inherits the members of the superclass. When we say "members of a class" we mean the instance variables and methods. Subclass can add new methods and instance variables of its own, and it can override the methods it inherits from the superclass.
+	Instance variables are not overriden because they don't need to be. They don't define any special behavior, so a subclass can give an inherited instance variable any value it chooses.
+
+	When you call a method on an object reference, you're calling the most specific version of the method for that object type. In other words, the lowest one wins!
+
+You said that the JVM starts walking up the inheritance tree, starting at the class type you invoked the method on. But what happens if the JVM doesn't ever find a match?
+	Good question! But you don't have to worry about that. The compiler guarantees that a particular method is callable for a specific reference type, but it doesn't say (or care) from which class that method actually comes from at runtime. Remember that if a class inherits a method, it has the method. Where the inherited method is defined (in other words, in which superclass it is defined) makes no difference to the compiler. But at runtime, the JVM will always pick the right one. And the right one means, the most specific version for that particular object.
